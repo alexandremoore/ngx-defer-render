@@ -12,7 +12,34 @@ npm install ngx-defer-render
 ```
 
 ## Usage
-Simply add the ngxDeferRender directive to the element that you want to lazy render and bind it to a method or an expression.
+1- Import DeferRenderModule in your AppModule
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+// Import your DeferRenderModule
+import { DeferRenderModule } from 'ngx-defer-render';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    // Specify DeferRenderModule as an import
+    DeferRenderModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
+2- Add the ngxDeferRender directive to the element(s) that you want to lazy render and bind it to a method or an expression.
+Here's an example inside a ngFor loop:
 
 ```
 <div class="user-list">
