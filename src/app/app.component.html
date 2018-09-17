@@ -4,7 +4,7 @@
   <div *ngFor="let user of users">
     <!-- <div class="user">
       <ng-container> -->
-    <div class="user" (ngxDeferRender)="onEnterViewPort(user)">
+    <div class="user" (ngxDeferRender)="onEnterViewPort(user)" [ngxDeferRenderOptions]="{threshold: 0.5}">
       <ng-container *ngIf="user.show">
         <ngx-avatar name="{{user.name.first}} {{user.name.last}}" size="80" [round]="true"  [src]="user.picture.large"></ngx-avatar>
         <span class="user-name">{{user.name.first}} {{user.name.last}}</span>

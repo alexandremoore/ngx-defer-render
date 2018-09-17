@@ -3,13 +3,23 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  NgZone
+  Input,
+  OnInit
 } from '@angular/core';
+
+export const DEFAULT_DEFER_RENDER_OPTIONS: IntersectionObserverInit = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0
+};
 
 @Directive({
   selector: '[ngxDeferRender]'
 })
-export class DeferRenderDirective {
+export class DeferRenderDirective implements OnInit {
+  @Input()
+  public ngxDeferRenderOptions: IntersectionObserverInit = DEFAULT_DEFER_RENDER_OPTIONS;
+
   @Output()
   public ngxDeferRender: EventEmitter<any> = new EventEmitter();
 
@@ -17,10 +27,13 @@ export class DeferRenderDirective {
 
   private observer: IntersectionObserver;
 
-  constructor(private elementRef: ElementRef, private zone: NgZone) {
+  constructor(private elementRef: ElementRef) {
+  }
+
+  ngOnInit(): void {
+    this.ngxDeferRenderOptions = { ...DEFAULT_DEFER_RENDER_OPTIONS, ...this.ngxDeferRenderOptions };
     this.observer = null;
     this.element = this.elementRef.nativeElement;
-
     this.registerIntersectionObserver();
     if (this.observer && this.element) {
       this.observer.observe(<Element>this.element);
@@ -35,7 +48,7 @@ export class DeferRenderDirective {
       entries => {
         this.handleIntersectionUpdate(entries);
       },
-      { threshold: [0.5] }
+      this.ngxDeferRenderOptions
     );
   }
 
