@@ -2,11 +2,11 @@
 </ngx-spinner>
 <div class="user-list">
   <div *ngFor="let user of users">
-    <!-- <div class="user" #userElement>
+    <!-- <div class="user">
       <ng-container> -->
     <div class="user" (ngxDeferRender)="onEnterViewPort(user)">
       <ng-container *ngIf="user.show">
-        <ngx-avatar name="{{user.name.first}} {{user.name.last}}" size="80" [round]="true"></ngx-avatar>
+        <ngx-avatar name="{{user.name.first}} {{user.name.last}}" size="80" [round]="true"  [src]="user.picture.large"></ngx-avatar>
         <span class="user-name">{{user.name.first}} {{user.name.last}}</span>
       </ng-container>
     </div>

@@ -12,8 +12,8 @@ notifications:
 node_js:
   - '9.5'
 before_script:
-  - npm install
-  - npm prune
+  - npm i -g npm@5.7.1 # this should be deleted once 5.7.X is out of "pre-release"
+  - npm ci             # instead of default npm install 
 script:
   - npm run build:lib:prod
 after_success:

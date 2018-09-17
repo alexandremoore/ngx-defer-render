@@ -1,6 +1,10 @@
 {
   "name": "ngx-defer-render",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-released",
+  "description": "Angular library to defer the rendering of an element until it enters the viewport",
+  "license": "MIT",
+  "repository": "https://github.com/alexandremoore/ngx-defer-render.git",
+  "author": "Alexandre Moore <alexandre.moore@gmail.com>",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
